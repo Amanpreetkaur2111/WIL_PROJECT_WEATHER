@@ -7,7 +7,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     // initialize variables
 
     DrawerLayout drawerLayout;
+
+    TextView tempText,descEd;
+    EditText postalCodeEd;
+    String req = "";
 
 
     @Override
@@ -25,6 +34,45 @@ public class MainActivity extends AppCompatActivity {
         // Assign Variables
 
         drawerLayout = findViewById(R.id.drawer_layout);
+
+
+        tempText = (TextView) findViewById(R.id.tempText);
+        descEd = (TextView) findViewById(R.id.desc);
+        postalCodeEd = (EditText) findViewById(R.id.postalcode);
+        final Button search = (Button) findViewById(R.id.button);
+         postalCodeEd.addTextChangedListener(new TextWatcher() {
+             @Override
+             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+             }
+
+             @Override
+             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                 if(charSequence.length()==6){
+                     search.setVisibility(View.VISIBLE);
+                 } else {
+                     search.setVisibility(View.GONE);
+                 }
+
+                 if(charSequence.length() == 3){
+                     req = charSequence+"";
+
+                 }
+
+
+
+             }
+
+             @Override
+             public void afterTextChanged(Editable s) {
+
+             }
+         });
+
+
+
+
+
 
 
     }
