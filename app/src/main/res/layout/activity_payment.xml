@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Card Number"
+            android:inputType="number"
             android:maxLength="16"
             />
         <LinearLayout
@@ -60,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:hint="mm/yy"
                 android:maxLength="5"
+                android:inputType="date"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
                 />
@@ -67,6 +69,7 @@
                 android:id="@+id/cvv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:hint="cvv"
                 android:layout_weight="1"
                 android:layout_margin="10dp"
