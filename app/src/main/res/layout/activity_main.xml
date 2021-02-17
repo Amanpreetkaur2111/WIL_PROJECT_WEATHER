@@ -42,7 +42,7 @@
                         android:layout_above="@+id/max"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center"
-                        android:text="0\u00b0"
+                        android:text="-2\u00b0"
                         android:gravity="center"
                         android:textSize="50sp" />
 

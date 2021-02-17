@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Recreate activity
 
-        recreate();
+        redirectActivity(this,ProfileActivity.class);
 
     }
 

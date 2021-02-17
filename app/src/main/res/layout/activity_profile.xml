@@ -13,16 +13,61 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/main_toolbar"/>
+            layout="@layout/main_toolbar_profile"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Profile"
-            android:textSize="50dp"
-            android:textStyle="bold"
-            android:gravity="center"/>
     </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/profilePicture"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_profile"/>
+
+
+
+
+            <EditText
+                android:id="@+id/firstName"
+                android:hint="Enter First Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+
+            <EditText
+                android:id="@+id/lastName"
+                android:hint="Enter Last Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Save"
+            android:layout_marginTop="20dp"
+            android:background="#175BEB"
+            android:textColor="#ffff"/>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
 
     <RelativeLayout
         android:layout_width="300dp"

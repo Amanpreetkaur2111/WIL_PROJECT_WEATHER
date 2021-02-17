@@ -13,15 +13,77 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/main_toolbar"/>
+            layout="@layout/main_toolbar_payment"/>
 
-        <TextView
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/cardHolder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Payment"
-            android:textSize="50dp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:layout_height="wrap_content"
+            android:hint="Enter Card Holder Name"
+            android:maxLength="20"
+            />
+        <EditText
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/cardNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Card Number"
+            android:maxLength="16"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+            <EditText
+                android:id="@+id/expDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="mm/yy"
+                android:maxLength="5"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                />
+            <EditText
+                android:id="@+id/cvv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="cvv"
+                android:layout_weight="1"
+                android:layout_margin="10dp"
+                android:maxLength="3"
+                />
+                </LinearLayout>
+        </LinearLayout>
+        <Button
+            android:id="@+id/saveData"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="Save"
+            android:textColor="#ffffff"
+            android:layout_marginTop="50dp"
+            android:background="#175BEB"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 
     <RelativeLayout
@@ -29,7 +91,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         >
-
 
         <include
             layout="@layout/main_nav_drawer"/>
