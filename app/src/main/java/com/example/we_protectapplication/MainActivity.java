@@ -308,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Recreate activity
 
-        redirectActivity(this,PaymentActivity.class);
+        redirectActivity(this,ProfileActivity.class);
 
     }
 

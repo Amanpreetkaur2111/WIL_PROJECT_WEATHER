@@ -13,21 +13,132 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/main_toolbar"/>
+            layout="@layout/main_toolbar_features"/>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Features"
-            android:textSize="50dp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:layout_height="100dp"
+            android:background="@drawable/border_rec"
+            android:elevation="5dp"
+            android:gravity="center_vertical"
+            android:padding="1dp">
+
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_camera" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="Click Picture to Compare Weather"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/border_rec"
+            android:elevation="5dp"
+            android:gravity="center_vertical"
+            android:padding="1dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="Location 1"
+                android:textSize="25sp"
+                android:textColor="#000000"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="Location 2"
+                android:textSize="25sp"
+                android:textColor="#000000"
+                />
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/compare"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="Compare"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="100dp"
+            android:background="#175BEB"
+            android:textColor="#ffff"/>
+
+
+
+
+
+        <LinearLayout
+            android:id="@+id/highlights"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:background="@drawable/border_rec"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:fontFamily="serif"
+                android:text="News Alerts"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="normal" />
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_arrow_forward" />
+        </LinearLayout>
+
+
+
     </LinearLayout>
+
+
+
+
+
+
+
+
+
 
     <RelativeLayout
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@android:color/white"
         >
 
 
