@@ -540,6 +540,7 @@
 
 
         <include
+            android:id="@+id/navigation_bar"
             layout="@layout/main_nav_drawer"/>
 
     </RelativeLayout>

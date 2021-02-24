@@ -8,13 +8,20 @@ import android.app.Activity;
 import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -37,6 +44,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.we_protectapplication.ProfileActivity.PROFILE_PREFF;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
 
+    LinearLayout navlayout;
+
+    SharedPreferences preferences;
 
 
 
@@ -64,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
 
+
+
+
+        Log.i("ONCREATE CALLED", "onCreate: ");
 
         tempText = (TextView) findViewById(R.id.tempText);
         descEd = (TextView) findViewById(R.id.desc);
@@ -125,12 +141,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
     }
+
+    // End of Create Method
 
     boolean flag =false;
 
@@ -266,7 +279,24 @@ public class MainActivity extends AppCompatActivity {
         // Open Drawer
 
         openDrawer(drawerLayout);
+        SharedPreferences  preferences = getSharedPreferences(PROFILE_PREFF,MODE_PRIVATE);
 
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        LinearLayout navlayout = (LinearLayout)inflater.inflate(R.layout.main_nav_drawer, null);
+        TextView user_name = (TextView) drawerLayout.findViewById(R.id.username);
+        ImageView user_image = (ImageView) drawerLayout.findViewById(R.id.userImage);
+        user_name.setText(preferences.getString("firstName","")+" "+preferences.getString("lastName",""));
+        user_image.setImageBitmap(decodeBase64(preferences.getString("profilePic","")));
+
+    }
+
+
+    private Bitmap decodeBase64(String input) {
+
+        byte[] decodedByte = Base64.decode(input, 0);
+        return BitmapFactory
+                .decodeByteArray(decodedByte, 0, decodedByte.length);
 
     }
 
@@ -275,6 +305,8 @@ public class MainActivity extends AppCompatActivity {
         // Open Drawer Layout
 
         drawerLayout.openDrawer(GravityCompat.START);
+
+
 
     }
 

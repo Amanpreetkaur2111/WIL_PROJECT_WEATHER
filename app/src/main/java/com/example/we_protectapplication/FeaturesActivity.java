@@ -20,6 +20,9 @@ public class FeaturesActivity extends AppCompatActivity {
     }
 
 
+    // End of Create Method
+
+
     public void ClickMenu(View view){
 
         // open drawer
