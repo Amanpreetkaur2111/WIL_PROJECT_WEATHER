@@ -26,12 +26,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-//import com.android.volley.AuthFailureError;
-//import com.android.volley.Request;
-//import com.android.volley.Response;
-//import com.android.volley.VolleyError;
-//import com.android.volley.VolleyLog;
-//import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 
 
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 if (checkPostalCode(postalCode)){
                     progressBar.setVisibility(View.VISIBLE);
                     String upToNCharacters = postalCode.substring(0, Math.min(postalCode.length(), 3));
-                   // makeJsonObjReq(upToNCharacters);
+                   makeJsonObjReq(upToNCharacters);
                     Log.d("check",upToNCharacters);
                 }
                 else {
@@ -193,78 +193,78 @@ public class MainActivity extends AppCompatActivity {
 
     // json method
 
-//    private void makeJsonObjReq(final String postalcode) {
-//
-//        String url = "http://api.openweathermap.org/data/2.5/weather?zip="+postalcode+",ca";// url on which request is done
-//
-//        Log.i("aaaa", "makeJsonObjReq: " + url);
-//
-//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, // get request to fetch data
-//                url, new JSONObject(),
-//                new Response.Listener<JSONObject>() {
-//
-//                    @Override
-//                    public void onResponse(JSONObject response) {// here we get the response after request
-//                        Log.d("Response", response.toString());
-//
-//                        try {
-//                            JSONObject main = response.getJSONObject("main");
-//// parsing the json
-//                            double tempr = main.getInt("temp");
-//                            String temp  = String.valueOf(tempr - 273);
-//                            double temp_min = main.getInt("temp_min");
-//                            String min  = String.valueOf(temp_min - 273);
-//                            double temp_max = main.getInt("temp_max");
-//                            String max  = String.valueOf(temp_max - 273);
-//
-//                            tempText.setText(temp+" \u00b0C");
-//
-//
-//                            progressBar.setVisibility(View.GONE);
-//
-//                            JSONArray weather = response.getJSONArray("weather");
-//                            for (int i = 0;i < weather.length();i++){
-//                                JSONObject object = weather.getJSONObject(i);
-//                                descEd.setText(object.getString("main"));  //
-//                            }
-//
-//
-//
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//
-//                    }
-//                }, new Response.ErrorListener() {
-//
-//            @Override // if any error comes its caught here
-//            public void onErrorResponse(VolleyError error) {
-//                VolleyLog.d("error", "Error: " + error.getMessage());
-//                Log.d("error", error.toString());
-//                postalCodeEd.setError("Invalid Postal Code");
-//                progressBar.setVisibility(View.GONE);
-//            }
-//        }) {
-//
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> headers = new HashMap<String, String>();
-//                headers.put("Content-Type", "application/json");
-//                headers.put("charset", "utf-8");
-//                headers.put("x-api-key", Auth_key);// we have to pass header to authenticate the request
-//                return headers;
-//            }
-//
-//
-//        };
-//
-//        // Adding request to request queue
-//        AppController.getInstance().addToRequestQueue(jsonObjReq);
-//
-//        // Cancelling request
-//        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
-//    }
+    private void makeJsonObjReq(final String postalcode) {
+
+        String url = "http://api.openweathermap.org/data/2.5/weather?zip="+postalcode+",ca";// url on which request is done
+
+        Log.i("aaaa", "makeJsonObjReq: " + url);
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET, // get request to fetch data
+                url, new JSONObject(),
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {// here we get the response after request
+                        Log.d("Response", response.toString());
+
+                        try {
+                            JSONObject main = response.getJSONObject("main");
+// parsing the json
+                            double tempr = main.getInt("temp");
+                            String temp  = String.valueOf(tempr - 273);
+                            double temp_min = main.getInt("temp_min");
+                            String min  = String.valueOf(temp_min - 273);
+                            double temp_max = main.getInt("temp_max");
+                            String max  = String.valueOf(temp_max - 273);
+
+                            tempText.setText(temp+" \u00b0C");
+
+
+                            progressBar.setVisibility(View.GONE);
+
+                            JSONArray weather = response.getJSONArray("weather");
+                            for (int i = 0;i < weather.length();i++){
+                                JSONObject object = weather.getJSONObject(i);
+                                descEd.setText(object.getString("main"));  //
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override // if any error comes its caught here
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("error", "Error: " + error.getMessage());
+                Log.d("error", error.toString());
+                postalCodeEd.setError("Invalid Postal Code");
+                progressBar.setVisibility(View.GONE);
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("charset", "utf-8");
+                headers.put("x-api-key", Auth_key);// we have to pass header to authenticate the request
+                return headers;
+            }
+
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+        // Cancelling request
+        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
+    }
 
 
 
