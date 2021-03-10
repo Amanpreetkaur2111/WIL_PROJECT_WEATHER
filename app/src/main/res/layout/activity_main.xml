@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#cccccc"
         android:orientation="vertical">
 
         <include
@@ -31,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="100dp"
+                    android:layout_marginTop="10dp"
                     >
 
 
@@ -42,9 +43,9 @@
                         android:layout_above="@+id/max"
                         android:layout_centerHorizontal="true"
                         android:layout_gravity="center"
-                        android:text="-2\u00b0"
+                        android:text="0\u00b0"
                         android:gravity="center"
-                        android:textSize="50sp" />
+                        android:textSize="30sp" />
 
 
 
@@ -55,25 +56,6 @@
 
 
 
-                        <TextView
-                            android:id="@+id/max"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0\u00b0"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:visibility="gone"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:id="@+id/min"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0\u00b0"
-                            android:visibility="gone"
-                            android:textSize="20sp" />
 
 
                     </LinearLayout>
@@ -86,7 +68,16 @@
                         android:textSize="20sp"
                         android:text=""
                         android:layout_marginTop="20dp"
+
                         android:gravity="center"/>
+
+                    <ImageView
+                        android:id="@+id/weatherImage"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"/>
+
+
 
 
 
@@ -285,7 +276,7 @@
                             android:fontFamily="sans-serif"
                             android:text="Monday"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/day1Temp"
@@ -296,7 +287,7 @@
                             android:fontFamily="sans-serif"
                             android:text="23"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
 
                     </RelativeLayout>
@@ -318,7 +309,7 @@
                             android:fontFamily="sans-serif"
                             android:text="Tuesday"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/day2Temp"
@@ -329,7 +320,7 @@
                             android:fontFamily="sans-serif"
                             android:text="23"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
 
                     </RelativeLayout>
@@ -351,7 +342,7 @@
                             android:fontFamily="sans-serif"
                             android:text="Wednesday"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/day3Temp"
@@ -362,7 +353,7 @@
                             android:fontFamily="sans-serif"
                             android:text="23"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
 
                     </RelativeLayout>
@@ -384,7 +375,7 @@
                             android:fontFamily="sans-serif"
                             android:text="Thursday"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/day4Temp"
@@ -395,7 +386,7 @@
                             android:fontFamily="sans-serif"
                             android:text="23"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
 
                     </RelativeLayout>
@@ -417,7 +408,7 @@
                             android:fontFamily="sans-serif"
                             android:text="Friday"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/day5Temp"
@@ -428,7 +419,7 @@
                             android:fontFamily="sans-serif"
                             android:text="23"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
 
                     </RelativeLayout>
@@ -450,7 +441,7 @@
                             android:fontFamily="sans-serif"
                             android:text="Saturday"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/day6Temp"
@@ -461,7 +452,7 @@
                             android:fontFamily="sans-serif"
                             android:text="23"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
 
                     </RelativeLayout>
@@ -484,7 +475,7 @@
                             android:fontFamily="sans-serif"
                             android:text="Sunday"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/day7Temp"
@@ -495,7 +486,7 @@
                             android:fontFamily="sans-serif"
                             android:text="23"
                             android:textColor="#111"
-                            android:textSize="12sp" />
+                            android:textSize="20sp" />
 
 
                     </RelativeLayout>

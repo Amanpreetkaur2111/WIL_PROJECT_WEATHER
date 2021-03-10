@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Layout;
@@ -41,6 +43,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     String Auth_key = "d74cffcd8b6d73ef616c923095e6a13d";  //Auth key for the api request
     TextView tempText,descEd;
+    ImageView IV_weather;
     EditText postalCodeEd;
     ProgressBar progressBar;
     String req = "";
@@ -65,6 +76,15 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
 
+    boolean isWeekLogVisible = false;
+    View weekLog;
+    ImageView weeklogIcon;
+    static Location myLoc;
+
+    ProgressBar weeklogProgress;
+    View tempContainter;
+    TextView day1,day2,day3,day4,day5,day6,day7;
+    TextView day1Temp,day2Temp,day3Temp,day4Temp,day5Temp,day6Temp,day7Temp;
 
 
     @Override
@@ -75,6 +95,29 @@ public class MainActivity extends AppCompatActivity {
         // Assign Variables
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        weekLog = findViewById(R.id.weekLog);
+        weeklogIcon = findViewById(R.id.weeklogIcon);
+        weeklogProgress = findViewById(R.id.weeklogProgress);
+        tempContainter = findViewById(R.id.tempContainter);
+        day1 = findViewById(R.id.day1);
+        day1Temp = findViewById(R.id.day1Temp);
+        day2 = findViewById(R.id.day2);
+        day2Temp = findViewById(R.id.day2Temp);
+        day3 = findViewById(R.id.day3);
+        day3Temp = findViewById(R.id.day3Temp);
+        day4 = findViewById(R.id.day4);
+        day4Temp = findViewById(R.id.day4Temp);
+        day5 = findViewById(R.id.day5);
+        day5Temp = findViewById(R.id.day5Temp);
+        day6 = findViewById(R.id.day6);
+        day6Temp = findViewById(R.id.day6Temp);
+        day7 = findViewById(R.id.day7);
+        day7Temp = findViewById(R.id.day7Temp);
+
+
+        myLoc = new Location("default");
+        myLoc.setLatitude(43.7507);
+        myLoc.setLongitude(-79.3003);
 
 
 
@@ -82,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
         Log.i("ONCREATE CALLED", "onCreate: ");
 
         tempText = (TextView) findViewById(R.id.tempText);
+
+        IV_weather = (ImageView) findViewById(R.id.weatherImage);
+
         descEd = (TextView) findViewById(R.id.desc);
         postalCodeEd = (EditText) findViewById(R.id.postalcode);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -141,7 +187,61 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        View checkWeekLog = findViewById(R.id.checkWeekLog);
+        checkWeekLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (isWeekLogVisible){ //if week view is visible it hides the weekview
+                    weekLog.setVisibility(View.GONE);
+                    isWeekLogVisible = false;
+                    weeklogIcon.setImageResource(R.drawable.ic_arrow_downward_black_24dp);
+                }else {//if not visible is show the week view
+                    makeWeekLogJsonObjReq(myLoc);
+                    isWeekLogVisible = true;
+                    weeklogIcon.setImageResource(R.drawable.arrow_up);
+
+                }
+            }
+        });
+
+
     }
+
+    // date string
+
+    public static String dayStringFormat(long msecs) {
+        GregorianCalendar cal = new GregorianCalendar();
+
+        cal.setTime(new Date(msecs));
+
+        int dow = cal.get(Calendar.DAY_OF_WEEK);
+
+        switch (dow) {
+            case Calendar.MONDAY:
+                return "Monday";
+            case Calendar.TUESDAY:
+                return "Tuesday";
+            case Calendar.WEDNESDAY:
+                return "Wednesday";
+            case Calendar.THURSDAY:
+                return "Thursday";
+            case Calendar.FRIDAY:
+                return "Friday";
+            case Calendar.SATURDAY:
+                return "Saturday";
+            case Calendar.SUNDAY:
+                return "Sunday";
+        }
+
+        return "Unknown";
+    }
+
+
+
+
+
+
 
     // End of Create Method
 
@@ -189,6 +289,122 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void makeWeekLogJsonObjReq(Location loc) {
+        weeklogProgress.setVisibility(View.VISIBLE);
+
+        String url = "http://api.openweathermap.org/data/2.5/forecast?lat="+loc.getLatitude()+"&lon="+loc.getLongitude()+"";
+        setComponentVisibility(false);
+
+        Log.i("URL_TAG", "makeWeekLogJsonObjReq: " + url);
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
+                url, new JSONObject(),
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("Response", response.toString());
+
+                        try {
+                            JSONArray list = response.getJSONArray("list");
+                            for (int i = 0; i < list.length(); i++) {
+
+
+                                JSONObject obj = list.getJSONObject(i);
+                                Long day = obj.getLong("dt");
+                                String dayString = dayStringFormat(day*1000);
+
+
+//setting the weeks weather by getting response above and setting below
+                                Log.d("dayString",dayString);
+                                JSONObject main = obj.getJSONObject("main");
+                                double tempr = main.getInt("temp");
+
+                                JSONArray w2 = obj.getJSONArray("weather");
+                                String description = w2.getJSONObject(0).getString("main");
+
+
+                                String temp = String.valueOf(tempr - 273);
+                                day1Temp.setText(temp);
+                                double temp_min = main.getInt("temp_min");
+                                String min = String.valueOf(temp_min - 273);
+                                double temp_max = main.getInt("temp_max");
+                                String max = String.valueOf(temp_max - 273);
+
+
+
+                                weeklogProgress.setVisibility(View.GONE);
+                                progressBar.setVisibility(View.GONE);
+                                if (i==0){
+                                    day1.setText("Today");
+                                    day1Temp.setText(description + "   "+temp + " \u00b0C");
+                                    Log.d("Check 0  Date",dayString+day);
+
+                                }else if (i==1){
+                                    day2.setText(dayString);
+                                    day2Temp.setText(description+"   "+temp + " \u00b0C");
+                                    Log.d("Check Date",dayString+day);
+                                }else if (i==9){
+                                    day3.setText(dayString);
+                                    day3Temp.setText(description+"   "+temp + " \u00b0C");
+                                    Log.d("Check Date",dayString+day);
+                                }else if (i==17){
+                                    day4.setText(dayString);
+                                    day4Temp.setText(description+"   "+temp + " \u00b0C");
+                                    Log.d("Check Date",dayString+day);
+                                }else if (i==25){
+                                    day5.setText(dayString);
+                                    day5Temp.setText(description+"   "+temp + " \u00b0C");
+                                    Log.d("Check Date",dayString+day);
+                                }else if (i==33){
+                                    day6.setText(dayString);
+                                    day6Temp.setText(description+"   "+temp + " \u00b0C");
+                                    Log.d("Check Date",dayString+day);
+                                }
+                                Log.d("values", temp);
+                                Log.d("values", min);
+                                Log.d("values", max);
+                                weekLog.setVisibility(View.VISIBLE);
+                            }
+
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d("error", "Error: " + error.getMessage());
+                Log.d("error", error.toString());
+                progressBar.setVisibility(View.GONE);
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("charset", "utf-8");
+                headers.put("x-api-key", Auth_key);
+                return headers;
+            }
+
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq);
+
+        // Cancelling request
+        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
+    }
+
 
 
     // json method
@@ -209,6 +425,16 @@ public class MainActivity extends AppCompatActivity {
 
                         try {
                             JSONObject main = response.getJSONObject("main");
+                            //coord
+                            JSONObject coord = response.getJSONObject("coord");
+                            double lon = coord.getDouble("lon");
+                            double lat = coord.getDouble("lat");
+
+
+
+                            myLoc = new Location("pincodelocation");
+                            myLoc.setLongitude(lon);
+                            myLoc.setLatitude(lat);
 // parsing the json
                             double tempr = main.getInt("temp");
                             String temp  = String.valueOf(tempr - 273);
@@ -217,15 +443,37 @@ public class MainActivity extends AppCompatActivity {
                             double temp_max = main.getInt("temp_max");
                             String max  = String.valueOf(temp_max - 273);
 
+
+
                             tempText.setText(temp+" \u00b0C");
+
+
 
 
                             progressBar.setVisibility(View.GONE);
 
                             JSONArray weather = response.getJSONArray("weather");
+
                             for (int i = 0;i < weather.length();i++){
                                 JSONObject object = weather.getJSONObject(i);
-                                descEd.setText(object.getString("main"));  //
+                                descEd.setText(object.getString("main"));
+
+                                String iconImg = object.getString("icon");
+                                String iconURL = "https://openweathermap.org/img/wn/"+iconImg+"@4x.png";
+
+
+
+                                new DownLoadImageTask(IV_weather).execute(iconURL);
+
+
+
+
+
+
+
+
+
+
                             }
 
 
@@ -265,6 +513,20 @@ public class MainActivity extends AppCompatActivity {
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_obj);
     }
+    public void setComponentVisibility(boolean flag){
+        if (flag){
+            tempContainter.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }else {
+            tempContainter.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+        }
+
+
+
+
+    }
+
 
 
 
