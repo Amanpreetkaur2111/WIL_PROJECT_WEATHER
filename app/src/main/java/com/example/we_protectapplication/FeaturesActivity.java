@@ -48,6 +48,7 @@ public class FeaturesActivity extends AppCompatActivity {
     String Auth_key = "5927335b06c4d2d356d4adeba3889c03";
     Button compareButton;
     EditText et_location2_zip;
+    ImageView alert_IV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +60,17 @@ public class FeaturesActivity extends AppCompatActivity {
         cameraIcon = findViewById(R.id.image);
         compareButton = findViewById(R.id.compare);
         et_location2_zip = findViewById(R.id.location2_zip);
+        alert_IV = findViewById(R.id.alerts);
 
+        alert_IV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent = new Intent(FeaturesActivity.this, NewsAlert.class);
+                startActivity(intent);
 
-
+            }
+        });
 
 
 
@@ -104,11 +112,6 @@ public class FeaturesActivity extends AppCompatActivity {
             }
 
         });
-
-
-
-
-
 
 
 
