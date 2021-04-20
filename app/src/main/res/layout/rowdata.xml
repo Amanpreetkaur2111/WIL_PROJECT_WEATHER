@@ -23,7 +23,7 @@
 
                <LinearLayout
                    android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
+                   android:layout_height="wrap_content"
                    android:layout_weight="6"
                    android:orientation="vertical">
 
@@ -46,9 +46,9 @@
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="Decription"
-                       android:textSize="12sp"
+                       android:textSize="18sp"
                        android:textStyle="normal"
-                       android:maxLines="2"
+                       android:maxLines="4"
                        android:fontFamily="sans-serif"
                        android:layout_marginLeft="20dp" />
 
