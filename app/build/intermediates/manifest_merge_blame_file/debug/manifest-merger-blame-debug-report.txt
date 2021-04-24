@@ -1,0 +1,82 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.we_protectapplication"
+4    android:targetSandboxVersion="1"
+5    android:versionCode="1"
+6    android:versionName="1.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="15"
+9-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml
+10        android:targetSdkVersion="29" />
+10-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml
+11
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:6:5-67
+12-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:6:22-64
+13    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+13-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:7:5-80
+13-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:7:22-77
+14    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+14-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:8:5-81
+14-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:8:22-78
+15    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+15-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:9:5-81
+15-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:9:22-78
+16    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+16-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:10:5-79
+16-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:10:22-76
+17
+18    <application
+18-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:19:5-40:19
+19        android:name="com.example.we_protectapplication.AppController"
+19-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:20:9-38
+20        android:allowBackup="true"
+20-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:21:9-35
+21        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+21-->[androidx.core:core:1.1.0] /Users/amanpreetkaur/.gradle/caches/transforms-2/files-2.1/e9dab9c67c1ee3668e0bbf86c6d8cbd8/core-1.1.0/AndroidManifest.xml:24:18-86
+22        android:debuggable="true"
+23        android:icon="@mipmap/ic_launcher"
+23-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:22:9-43
+24        android:label="@string/app_name"
+24-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:23:9-41
+25        android:networkSecurityConfig="@xml/network_security_config"
+25-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:25:9-69
+26        android:roundIcon="@mipmap/ic_launcher_round"
+26-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:24:9-54
+27        android:supportsRtl="true"
+27-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:27:9-35
+28        android:testOnly="true"
+29        android:theme="@style/AppTheme"
+29-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:28:9-40
+30        android:usesCleartextTraffic="true" >
+30-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:26:9-44
+31        <activity android:name="com.example.we_protectapplication.PaymentActivity" />
+31-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:29:9-62
+31-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:29:19-50
+32        <activity android:name="com.example.we_protectapplication.FeaturesActivity" />
+32-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:30:9-54
+32-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:30:19-51
+33        <activity android:name="com.example.we_protectapplication.ProfileActivity" />
+33-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:31:9-53
+33-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:31:19-50
+34        <activity android:name="com.example.we_protectapplication.NewsAlert" />
+34-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:32:9-46
+34-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:32:19-44
+35        <activity android:name="com.example.we_protectapplication.MainActivity" >
+35-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:33:9-39:20
+35-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:33:19-47
+36            <intent-filter>
+36-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:34:13-38:29
+37                <action android:name="android.intent.action.MAIN" />
+37-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:35:17-69
+37-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:35:25-66
+38
+39                <category android:name="android.intent.category.LAUNCHER" />
+39-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:37:17-77
+39-->/Users/amanpreetkaur/WE_PROTECTAPPLICATION/app/src/main/AndroidManifest.xml:37:27-74
+40            </intent-filter>
+41        </activity>
+42    </application>
+43
+44</manifest>
